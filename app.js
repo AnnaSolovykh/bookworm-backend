@@ -1,7 +1,8 @@
 const express = require('express');
 const app = express();
 const mongoose = require('mongoose');
-const cors = require('cors');
+const authRouter = require('./routes/auth');
+
 require('dotenv').config();
 
 mongoose.set('strictQuery', false)
@@ -9,11 +10,7 @@ mongoose.set('strictQuery', false)
 const PORT = process.env.PORT || 4000; 
 
 app.use(express.json()); 
-app.use(
-    cors({
-        origin: 'http://localhost:3000',
-    })
-);
+app.use('/api/v1/auth', authRouter);
 
 const start = async() => {
     try {
