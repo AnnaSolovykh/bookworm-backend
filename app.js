@@ -1,4 +1,5 @@
 const express = require('express');
+const cors = require('cors'); 
 const app = express();
 const mongoose = require('mongoose');
 const authRouter = require('./routes/auth');
@@ -14,7 +15,12 @@ const PORT = process.env.PORT || 4000;
 
 app.use(express.json()); 
 
-//routes
+app.use(cors({
+    origin: 'http://localhost:3000',
+    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+    credentials: true, 
+}));
+
 app.use('/api/v1/auth', authRouter);
 app.use('/api/v1/books', authenticateUser, booksRouter);
 
