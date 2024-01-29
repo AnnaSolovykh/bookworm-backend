@@ -13,6 +13,7 @@ const addBooks = async (req, res) => {
         bookData.createdBy = req.user.userId;
 
         const book = await Book.create({
+            id: bookData.id,
             name: bookData.name,
             author: bookData.author,
             price: bookData.price,
@@ -21,7 +22,13 @@ const addBooks = async (req, res) => {
 
         res.status(StatusCodes.CREATED).json({ book });
     } catch (error) {
-        res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({ error: 'Internal Server Error' });
+        if (error instanceof mongoose.Error.CastError) {
+            // Handle CastError here (e.g., invalid data type)
+            res.status(StatusCodes.BAD_REQUEST).json({ error: 'Invalid data type' });
+        } else {
+            // Handle other errors
+            res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({ error: 'Internal Server Error' });
+        }
     }
 };
 
@@ -33,8 +40,8 @@ const deleteBook = async (req, res) => {
         params:{ id: bookId } 
     } = req;
 
-    const favoriteBook = await Book.findByIdAndRemove({
-        _id: bookId, 
+    const favoriteBook = await Book.findOneAndRemove({
+        id: bookId, 
         createdBy: userId
     });
 

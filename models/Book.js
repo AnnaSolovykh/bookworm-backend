@@ -2,9 +2,9 @@
 const mongoose = require('mongoose');
 
 const BookSchema = new mongoose.Schema({
-    price: {
-        type: Number, 
-        required: [true, 'Price must be provided'],
+    id: {
+        type: Number,
+        required: [true, 'Id must be provided'],
     },
     name: {
         type: String,
@@ -13,6 +13,10 @@ const BookSchema = new mongoose.Schema({
     author: {
         type: String,
         required: [true, 'Author must be provided'],
+    },
+    price: {
+        type: Number, 
+        required: [true, 'Price must be provided'],
     },
     createdBy: {
         type: mongoose.Types.ObjectId,

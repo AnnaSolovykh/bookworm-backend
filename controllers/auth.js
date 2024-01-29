@@ -40,7 +40,23 @@ const login = async (req, res) => {
         });
 };
 
+const logout = (req, res) => {
+    req.session.destroy(function (err) {
+        if (err) {
+            const errorMessage = 'Logout failed';
+            return res
+            .status(StatusCodes.INTERNAL_SERVER_ERROR)
+            .json({ error: errorMessage });
+        } else {
+            return res
+            .status(StatusCodes.OK)
+            .json({ message: 'Logged out successfully' });
+        }
+    });
+};
+
 module.exports = {
     register,
-    login
+    login,
+    logout
 };

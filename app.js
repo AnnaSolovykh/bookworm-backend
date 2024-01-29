@@ -1,15 +1,21 @@
+require('dotenv').config();
 const express = require('express');
-const cors = require('cors'); 
 const app = express();
 const mongoose = require('mongoose');
+mongoose.set('strictQuery', false)
+
+const session = require('express-session');
+const sessionOptions = require('./session-config');
+
+/*security packages*/
+const cors = require('cors');
+
+// routes
 const authRouter = require('./routes/auth');
 const booksRouter = require('./routes/books');
+
+/*middleware*/
 const authenticateUser = require('./middleware/authentication');
-
-
-require('dotenv').config();
-
-mongoose.set('strictQuery', false)
 
 const PORT = process.env.PORT || 4000; 
 
@@ -21,6 +27,9 @@ app.use(cors({
     credentials: true, 
 }));
 
+app.use(session(sessionOptions));
+
+/* routes */
 app.use('/api/v1/auth', authRouter);
 app.use('/api/v1/books', authenticateUser, booksRouter);
 
