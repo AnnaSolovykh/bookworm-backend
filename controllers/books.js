@@ -20,13 +20,11 @@ const addBooks = async (req, res) => {
             createdBy: bookData.createdBy, 
         });
 
-        res.status(StatusCodes.CREATED).json({ book });
+        res.status(StatusCodes.CREATED).json( book );
     } catch (error) {
         if (error instanceof mongoose.Error.CastError) {
-            // Handle CastError here (e.g., invalid data type)
             res.status(StatusCodes.BAD_REQUEST).json({ error: 'Invalid data type' });
         } else {
-            // Handle other errors
             res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({ error: 'Internal Server Error' });
         }
     }
