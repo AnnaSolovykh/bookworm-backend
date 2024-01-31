@@ -1,13 +1,15 @@
-### Redux Bookshop Project - Backend Repository
+# Redux Bookshop Project - Backend Repository
 
-Demo: Bookworm Redux Shop
+Demo: [Bookworm Redux Shop](https://booksworm-redux-shop-git-main-annasolovykh.vercel.app)
 
-## Project Title: Bookworm 
+## Project Title: Bookworm
 
-# Description:
-The Bookworm backend is an integral part of the Bookworm full-stack e-commerce solution, developed to work seamlessly with Redux and Node.js. This backend repository supports all the data management and server-side logic required for the Bookworm application.
+### Description:
+Bookworm backend is an integral part of Bookworm full-stack e-commerce solution, developed to work with Redux and Node.js. This backend repository supports data management and server-side logic required for Bookworm application.
+<br/>
+For more details about the frontend features, [visit the frontend repository](https://github.com/AnnaSolovykh/bookworm).
 
-# Key Features:
+### Key Features:
 + Robust and secure user authentication using JSON Web Tokens (JWT) and bcryptjs for password hashing.
 + Efficient session management with express-session and connect-mongodb-session.
 + Enhanced security features including CORS, Helmet, and express-rate-limit to safeguard the application.
@@ -16,7 +18,7 @@ The Bookworm backend is an integral part of the Bookworm full-stack e-commerce s
 + Utilization of xss-clean to sanitize user input and prevent cross-site scripting (XSS) attacks.
 + Integrated error handling with express-async-errors for a cleaner and more efficient codebase.
 
-# Technologies Used:
+### Technologies Used:
 + bcryptjs for password hashing.
 + connect-mongodb-session for MongoDB-based session storage.
 + cors for handling cross-origin resource sharing.
