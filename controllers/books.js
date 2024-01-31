@@ -1,5 +1,6 @@
+const mongoose = require('mongoose');
 const Book =  require('../models/Book');
-const { NotFoundError, BadRequestError } = require('../errors');
+const { NotFoundError } = require('../errors');
 const { StatusCodes } = require('http-status-codes');
 
 const getBooks = async (req, res) => {
@@ -30,8 +31,6 @@ const addBooks = async (req, res) => {
     }
 };
 
-
-
 const deleteBook = async (req, res) => {
     const { 
         user: { userId }, 
@@ -44,7 +43,7 @@ const deleteBook = async (req, res) => {
     });
 
     if (!favoriteBook) {
-        throw new NotFoundError(`No book was found with id ${favoriteBook}`);
+        throw new NotFoundError(`No book was found with id ${bookId}`);
     }
     res.status(StatusCodes.OK).json({ msg: "The entry was deleted." })
 };

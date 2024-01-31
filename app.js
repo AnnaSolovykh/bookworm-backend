@@ -1,4 +1,6 @@
 require('dotenv').config();
+require('express-async-errors');
+
 const express = require('express');
 const app = express();
 const mongoose = require('mongoose');
@@ -21,6 +23,10 @@ const booksRouter = require('./routes/books');
 
 //middleware
 const authenticateUser = require('./middleware/authentication');
+
+//error handler
+const errorHandlerMiddleware = require('./middleware/error-handler');
+const notFoundMiddleware = require('./middleware/not-found');
 
 const PORT = process.env.PORT || 4000; 
 
@@ -46,6 +52,9 @@ app.use(xss());
 //routes
 app.use('/api/v1/auth', authRouter);
 app.use('/api/v1/books', authenticateUser, booksRouter);
+
+app.use(errorHandlerMiddleware);
+app.use(notFoundMiddleware);
 
 const start = async() => {
     try {
