@@ -7,29 +7,43 @@ mongoose.set('strictQuery', false)
 const session = require('express-session');
 const sessionOptions = require('./session-config');
 
-/*security packages*/
+//security packages
 const cors = require('cors');
+
+//extra security packages
+const helmet = require('helmet');
+const xss = require('xss-clean');
+const rateLimiter = require('express-rate-limit');
 
 // routes
 const authRouter = require('./routes/auth');
 const booksRouter = require('./routes/books');
 
-/*middleware*/
+//middleware
 const authenticateUser = require('./middleware/authentication');
 
 const PORT = process.env.PORT || 4000; 
 
 app.use(express.json()); 
+app.set('trust proxy', 1);
+app.use(session(sessionOptions));
 
+//security
 app.use(cors({
-    origin: 'http://localhost:3000',
+    origin: ['http://localhost:3000', 'https://booksworm-redux-shop.vercel.app'],
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
     credentials: true, 
 }));
+app.use(
+    rateLimiter({
+        windowMs: 15 * 60 * 1000, 
+        max: 100, 
+    })
+);
+app.use(helmet());
+app.use(xss());
 
-app.use(session(sessionOptions));
-
-/* routes */
+//routes
 app.use('/api/v1/auth', authRouter);
 app.use('/api/v1/books', authenticateUser, booksRouter);
 
