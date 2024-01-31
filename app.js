@@ -36,7 +36,7 @@ app.use(session(sessionOptions));
 
 //security
 app.use(cors({
-    origin: ['http://localhost:3000', 'https://booksworm-redux-shop.vercel.app', 'https://booksworm-redux-shop-git-main-annasolovykh.vercel.app/'],
+    origin: ['http://localhost:3000', 'https://booksworm-redux-shop.vercel.app', 'https://booksworm-redux-shop-git-main-annasolovykh.vercel.app'],
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
     credentials: true, 
 }));
