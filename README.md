@@ -7,7 +7,7 @@ Demo: [Bookworm Redux Shop](https://booksworm-redux-shop-git-main-annasolovykh.v
 ### Description:
 Bookworm backend is an integral part of Bookworm full-stack e-commerce solution, developed to work with Redux and Node.js. This backend repository supports data management and server-side logic required for Bookworm application.
 <br/>
-For more details about the frontend features, [visit the frontend repository](https://github.com/AnnaSolovykh/bookworm).
+For more details about the frontend features, [visit the frontend repository](https://github.com/AnnaSolovykh/booksworm-redux-shop).
 
 ### Key Features:
 + Robust and secure user authentication using JSON Web Tokens (JWT) and bcryptjs for password hashing.
