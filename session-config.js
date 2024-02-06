@@ -16,7 +16,7 @@ const sessionOptions= {
     saveUninitialized: true,
     store: store,
     cookie: {
-        secure: false, // once its deployment change it to true
+        secure: true, // once its deployment change it to true
         sameSite: 'strict',
     },
 };
